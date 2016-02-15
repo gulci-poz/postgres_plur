@@ -1,0 +1,17 @@
+ORDBMS - with object-oriented database model, classes and inheritance supported in schemas and queries
+SQL 2011
+ACID - Atomicity Consistency Isolation Durability
+Indexes
+Views, Triggers, Procedures, Functions
+Relationships
+MVCC - MultiVersion Concurrency Control - spójnoœæ danych, kiedy wiele procesów korzysta z tych samych danych
+SQL 2008 Datatypes
+http://www.postgresqltutorial.com/postgresql-sample-database/
+(bit.ly/pagilia)
+
+create database dvdrental;
+cd C:\Program Files\PostgreSQL\9.5\bin>
+PS: ./pg_restore.exe -U postgres -d dvdrental dvdrental.tar
+select * from film;
+
+copy actor to 'F:\downloaded\db\temp\actor.csv' delimiter ',' csv;
