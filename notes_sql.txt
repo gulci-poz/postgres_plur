@@ -4,7 +4,7 @@ ACID - Atomicity Consistency Isolation Durability
 Indexes
 Views, Triggers, Procedures, Functions
 Relationships
-MVCC - MultiVersion Concurrency Control - sp�jno�� danych, kiedy wiele proces�w korzysta z tych samych danych
+MVCC - MultiVersion Concurrency Control - sp�jno�� danych, kiedy wiele proces�w korzysta z tych samych danych
 SQL 2008 Datatypes
 http://www.postgresqltutorial.com/postgresql-sample-database/
 (bit.ly/pagilia)
@@ -15,3 +15,51 @@ PS: ./pg_restore.exe -U postgres -d dvdrental dvdrental.tar
 select * from film;
 
 copy actor to 'F:\downloaded\db\temp\actor.csv' delimiter ',' csv;
+
+==================================================
+
+dbms ~ kategorie baz danych
+relational algebra ~ SQL
+data modeling ~ komunikacja
+
+dbms - różne scenariusze, przypadku użycia i wymagania
+db - dane, informacja, struktura danych, zarządzanie
+db - kolekcja lub repozytorium danych, z określoną strukturą, zarządzana przez dbms
+strukturalizacja - tabelaryczna, pół-struktura - jako dokumenty XML, dane bez struktury - nie pasują do żadnego modelu
+
+relacyjne bazy danych i algebra relacyjna
+bazy danych OR lub OO
+nowe modele algebr ze względu na typ danych - algebra rastrowa, mapowa, tablicowa
+bazy grafowe - zapytanie grafowe i traversal queries
+NoSQL - Not Only SQL - wydajność ponad tolerancję na błędy i możliwość skalowania w poziomie; duża liczba zapytań w rozproszonym środowisku (web services)
+
+Na szybkość ewolucji baz danych miały wpływ różne czynniki:
+- wymagania funkcjonalne - rozwój dodatków i osobnych dbms, np. PostGIS, SCI-DB
+- wymagania niefunkcjonalne - rozwój innych technologii, np. OOP i bazy OO i OR; skalowanie poziome za pomocą kolumnowych baz danych
+
+inne modele: sieciowy, hierarchiczny; obecnie dominujące: relacyjne, OR, NoSQL
+
+bazy NoSQL i twierdzenia CAP (tw. Brewera) - nie jest możliwe dla rozproszonego systemu obliczeniowego równoczesne zapewnienie trzech właściwości:
+- consistency - wszyscy klienci widzą niezwłocznie najnowsze dane, nawet w przypadku updejtu
+- availability - wszyscy klienci mogą znaleźć replikę danych, nawet w wypadku awarii węzła
+- partition tolerance - system kontynuuje działanie mimo utraty pewnej porcji informacji (message loss) lub awarii części systemu
+
+naturę systemu determinuje to, którą właściwość zignorujemy
+odpuszczająć consistency dostajemy skalowalny, prosty i wydajny dbms (NoSQL)
+
+bazy relacyjne wymuszają ACID - Atomicity, Consistency, Isolation, Durability
+bazy NoSQL przyjmują model BASE - basically available soft-state, eventual-consistency
+
+NoSQL
+- przechowywanie, manipulacja i wyciąganie danych nierelacyjnych
+- rozproszone, open source, skalują się horyzontalnie, łatwa replikacja
+- bez schematu
+- model BASE
+- nieformalna gwarancja, jeśli nie ma updejtów, to ostatecznie wszystkie dostępy do jednostki danych zwrócą najnowszą wersję tych danych
+- prostota designu
+- wsparcie dla dużej ilości danych
+
+Rodzaje NoSQL:
+- key value dbs, nie ma wsparcia dla skomplikowanych zapytań i agregacji; Riak, Redis, Memebase, MemcacheDB
+- kolumnowe dbs (column-orinted), dane w niektórych kolumnach są przechowywane razem, dodawanie kolumn nic nie kosztuje i robi się je dla poszczególnych wierszy, wiersze mogą mieć różne zestawy kolumn, nie trzeba przechowywać wartości null; dobry model do rozproszonych baz danych; HBase, bazuje na big table storage system Google; dobry model do dużych danych - dobrze się skaluje; nie dla małych zestawów danych, wymaga pięciu węzłów serwerowych, dużo administrowania, trudna do nauki i opanowania
+- bazy dokumentowe
